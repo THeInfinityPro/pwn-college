@@ -1,0 +1,326 @@
+level 6:
+
+import requests
+
+headers = {
+    'Host': '6b6c4f03c94ec3e1e860a22485bffdca'
+}
+# Send the GET request with the 'a' parameter (disable SSL verification)
+response = requests.get('http://127.0.0.1:80', headers=headers)
+
+# Print the response
+print(response.status_code)
+print(response.content)
+
+level 7:
+
+curl http://127.0.0.1:80//{that path}
+
+level 8:
+
+echo -e "GET /8f278581e47d33cd755c7f291ccd343d HTTP/1.1\r\nHost: 8f278581e47d33c
+d755c7f291ccd343d\r\nConnection: close\r\n\r\n" | nc 127.0.0.1 80
+
+level 9:
+
+import requests
+
+headers = {
+    'Host': '/5248876150685cd7dc57afb5a879bb4c'
+}
+
+response = requests.get('http://127.0.0.1:80/5248876150685cd7dc57afb5a879bb4c', headers=headers)
+
+print(response.status_code)
+
+print(response.content)
+
+level 10:
+
+curl "http://127.0.0.1:80/b91a670a%205d579d04%2F6cf4f7ad%20eec1135e"
+
+The space between b91a670a and 5d579d04 is encoded as %20.
+The slash / between 5d579d04 and 6cf4f7ad is encoded as %2F.
+The space between 6cf4f7ad and eec1135e is encoded as %20.
+
+level 11:
+
+echo -e "GET /48df3f7e%20760d9fe4%2F90d7b024%2092163875 HTTP/1.1\r\nHost: /48df3f7e%20760d9fe4%2F90d7b024%2092163875\r\nConnection: close\r\n\r\n" | nc 127.0.0.1 80
+
+
+
+echo -e "GET /?a=13603d4209bba5734b4c6cc2d516ecc4&b=8366bd96%2071ffc6d5%2629fde898%239494d5da HTTP/1.1\r\nHost: /48df3f7e%20760d9fe4%2F90d7b024%2092163875\r\nConnection: close\r\n\r\n" | nc 127.0.0.1 80
+
+8366bd96%2071ffc6d5%2629fde898%239494d5da
+
+level 12:
+
+import requests
+
+headers = {
+    'Host': '/c2adab22%204b14d767%2F26c03c01%20a323af5b'
+}
+
+response = requests.get('http://127.0.0.1:80/c2adab22%204b14d767%2F26c03c01%20a323af5b', headers=headers)
+
+print(response.status_code)
+
+print(response.content)
+
+level 13:
+
+curl http://127.0.0.1:80/a?a=987da9aa2aba9157deca406d2496438c
+
+level 15:
+
+import requests
+import pwn
+
+# The correct win address obtained from curl
+win_address = "0x7545be19d1c5"
+
+print("Win address:", win_address)
+
+# Convert the win address from hexadecimal string to an integer
+win_address_int = int(win_address, 16)
+
+# Construct the payload
+payload = "A" + pwn.p64(win_address_int).decode("latin-1") * 200
+
+# Send the payload to the server
+response = requests.get("http://challenge.localhost/greet", params={"name": payload})
+
+# Check if the response contains "pwn" (indicating success)
+if "pwn" in response.text:
+    print(response.text)
+else:
+    print("Response does not contain 'pwn'.")
+
+level 16:
+
+curl "http://127.0.0.1:80/?a=ac70896881d49282cca76b8975b60fc6&b=8da72f92%200aa761df%2640c96042%235e9e5c5d"
+
+for curl 
+
+space is %20
+& is %26
+# is %23
+
+level 17:
+
+echo -e "GET /?a=13603d4209bba5734b4c6cc2d516ecc4&b=8366bd96%2071ffc6d5%2629fde898%239494d5da HTTP/1.1\r\nHost: /48df3f7e%20760d9fe4%2F90d7b024%2092163875\r\nConnection: close\r\n\r\n" | nc 127.0.0.1 80
+
+level 18:
+
+import requests
+
+headers = {
+    'Host': '127.0.0.1'
+}
+
+response = requests.get('http://127.0.0.1:80/?a=8123714ca3b91e2b7318308db88be667&b=8c4f2c54%20507dd832%2687d3f368%23e6ccdec5', headers=headers)
+
+print(response.status_code)
+
+print(response.content)
+
+level 19:
+
+curl -X POST http://127.0.0.1:80/ -d "a=20f675266b68b52229ba6905507f9952"
+
+level 20:
+
+POST / HTTP/1.1
+Host: 127.0.0.1
+Content-Length: 34
+Content-Type: application/x-www-form-urlencoded
+
+a=e9fdcd3f99422f5a4761f2d850bebbb0
+
+
+cmd = cat level20.py | nc 127.0.0.1 80
+
+level 21:
+
+import requests
+
+data = requests.post("http://127.0.0.1:80", data={'a': 'a88102be76b76c10c27cfb303887d179'})
+
+print(data.text)
+
+level 22:
+
+curl -X POST http://127.0.0.1:80/ -d "a=b4359635a3b796e208f30d3b3ba1e2fc" -d "b=f75b86f2%205b3555b6%26c368dea9%236a38d9ab"
+
+level 23:
+
+POST / HTTP/1.1
+Host: 127.0.0.1:80
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 78
+
+a=c73477722aee2b46730a785b0a86d635&b=a732df75%20cbcf8e1a%26f12ac078%23e99b4d18
+
+cmd = cat level23.txt | nc 127.0.0.1 80
+
+level 25:
+
+curl -X POST http://127.0.0.1:80/ -H "Content-Type: application/json" -d '{"a": "24c043c075d57ae93c13c623c083202e"}'
+
+level 26:
+
+echo -e "POST / HTTP/1.1\r\nHost: 127.0.0.1\r\nContent-Type: application/json\r\nContent-Length: $(echo -n '{"a": "b51ccd5bc0fbb8ad19f218affd992aaa"}' | wc -c)\r\n\r\n{\"a\": \"b51ccd5bc0fbb8ad19f218affd992aaa\"}" | nc 127.0.0.1 80
+
+level 27:
+
+import requests as r
+
+data={'a': '052bed206455ff5cf41d8ca7a7c626c5'}
+res = r.post("http://127.0.0.1:80", json=data)
+
+print(res.text)
+
+level 28:
+
+curl -X POST http://127.0.0.1:80 \
+  -H "Content-Type: application/json" \
+  -d '{
+        "a": "423c07e025ea6016efb58641045dba95",
+        "b": {
+          "c": "dd5cd155",
+          "d": [
+            "a664c509",
+            "9a8e7b9d 3ec08ec6&43a5b2c4#196ea0fc"
+          ]
+        }
+      }'
+
+level 29:
+
+echo -e "POST / HTTP/1.1\r\nHost: 127.0.0.1\r\nContent-Length: 116\r\nContent-Type: application/json\r\n\r\n{\"a\":\"918c5c0102626633ca3dffeb180626e1\",\"b\":{\"c\":\"b7641dc5\",\"d\":[\"ddd31169\",\"27aaff07 d29fa57f&4b250b14#0f165aa7\"]}}" | nc 127.0.0.1 80
+
+
+check the content length
+
+level 30:
+
+import requests as r
+
+data={'a': '9c4bd1876132fa7243f3568ad588ddde', 'b': {'c': '34519307', 'd': ['8d45b7af', '55349c78 d3216ea7&9f83a589#53291724']}}
+res = r.post("http://127.0.0.1:80", json=data)
+
+print(res.text)
+
+level 31:
+
+curl 127.0.0.1/bacf8960ccd2ef9fa4168a40df7efceb
+
+level 32:
+
+cmd 1 :
+
+echo -e "GET / HTTP/1.1\r\nHost: 127.0.0.1\r\n\r\n" | nc 127.0.0.1 80
+
+cmd 2:
+echo -e "GET /3f4d8e684b2493f11dce660914ee0a8d HTTP/1.1\r\nHost: 127.0.0.1\r\n\r\n" | nc 127.0.0.1 80
+
+
+level 33:
+
+import requests as r
+
+response = r.get("http://127.0.0.1:80")
+
+print(response.content)
+
+level 34:
+
+cmd 1:
+
+to get the cookies from server :  curl -i http://127.0.0.1 80
+
+cmd 2:
+
+set cookies to get flag : curl -b cookies="cookies received from server" http://127.0.0.1 80
+
+level 35:
+
+cmd 1: nc 127.0.0.1 80 
+
+then enter the below cmd to get the cookie:
+
+GET / HTTP/1.1
+Host: 127.0.0.1
+
+cmd 2: nc 127.0.0.1 80
+
+GET / HTTP/1.1
+HOST: 127.0.0.1
+Cookie: cookie="Enter the cookie"
+
+level 36:
+
+import requests as r
+
+response = r.get("http://127.0.0.1:80")
+
+print(response.content)
+
+level 37:
+
+#!/bin/bash
+
+# First request: Save cookies into cookies.txt
+curl -X GET http://127.0.0.1:80/request1 --cookie-jar cookies.txt --cookie cookies.txt &
+
+# Second request: Send the cookies stored in cookies.txt
+curl -X GET http://127.0.0.1:80/request2 --cookie cookies.txt &
+
+# Third request: Send the cookies stored in cookies.txt
+curl -X GET http://127.0.0.1:80/request3 --cookie cookies.txt &
+
+# Fourth request: Send the cookies stored in cookies.txt
+curl -X GET http://127.0.0.1:80/request4 --cookie cookies.txt &
+
+# Wait for all background requests to complete
+wait
+
+Execute the Cmd 3 to 4 times cmd : ./level37.sh
+
+level 38:
+
+cmd 1: 
+
+nc localhost 80
+GET / HTTP/1.1
+HOST: 127.0.0.1
+
+cmd 2:
+
+nc localhost 80
+GET / HTTP/1.0 
+Host: 127.0.0.1 
+Cookie: session="your first session id"
+
+cmd 3:
+
+nc localhost 80
+GET / HTTP/1.0 
+Host: 127.0.0.1 
+Cookie: session="your second session id"
+
+cmd 4:
+
+nc localhost 80
+GET / HTTP/1.0 
+Host: 127.0.0.1 
+Cookie: session="your Third session id"
+
+level 39:
+
+import requests as r
+
+response = r.get("http://127.0.0.1:80")
+
+print(response.content)
+
