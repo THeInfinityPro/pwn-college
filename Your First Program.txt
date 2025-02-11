@@ -1,0 +1,20 @@
+
+YOUR FIRST REGISTER :
+
+step 1:
+
+# Create a file using .s extension (like name.s)
+
+# Using vi or cat cmd to editor the file that u created
+
+# In that file type
+
+  mov rax, 60
+  
+  And save the file
+
+Step 2:
+
+# Type /challenge/check name.s
+
+# To execute the program to get your flag
